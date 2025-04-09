@@ -52,17 +52,17 @@ Tarayıcınızda bir slayta sağ tıklayın ve slaytın URL'sini almak için "Ba
 ## Komut Satırı Seçenekleri
 
 ```
-kullanım: slide_downloader.py [-h] [--output-dir OUTPUT_DIR] [--start START] [--max MAX]
+Kullanım: slide_downloader.py [-h] [--output-dir OUTPUT_DIR] [--start START] [--max MAX]
                           [--format {jpeg,png}] [--presentation PRESENTATION]
                           [--keep-images]
                           base_url
 
 Slaytları indirir ve bir sunum oluşturur
 
-konumsal bağımsız değişkenler:
+Zorunlu Değişkenler:
   base_url              Slaytlar için temel URL (örn., https://example.com/presentation/id/svgs/slide)
 
-isteğe bağlı bağımsız değişkenler:
+Opsiyonel Değişkenler:
   -h, --help                   Yardım mesajını göster ve çık
   --output-dir OUTPUT_DIR      Görüntülerin kaydedileceği dizin (varsayılan: slides)
   --start START                Başlangıç slayt numarası (varsayılan: 1)
