@@ -1,6 +1,6 @@
 # Slayt İndirici ve Sunum Oluşturucu
 
-Bu Python betiği, belirtilen bir URL'den SVG slaytlarını indirir, JPEG veya PNG formatına dönüştürür ve bir PowerPoint sunumu oluşturur.
+Bu Python kodu, belirtilen bir URL'den SVG slaytlarını indirir, JPEG veya PNG formatına dönüştürür ve bir PowerPoint sunumu oluşturur.
 
 ## Kurulum Talimatları
 
@@ -27,20 +27,23 @@ Bu Python betiği, belirtilen bir URL'den SVG slaytlarını indirir, JPEG veya P
    - **Windows'ta**:
      pip'in otomatik olarak yükleyeceği önceden derlenmiş ikili paketleri kullanmanız önerilir.
 
-2. **Slaytın URL'sini Alın**
-   
-   Tarayıcınızda bir slayta sağ tıklayın ve slaytın URL'sini almak için "Bağlantı Adresini Kopyala" veya "Bağlantıyı Kopyala" seçeneğini seçin.
-   <img src="images/url_kopyalama.png" alt="Slayt URL'sini kopyalama" width="50%" />
+## 2. Slaytın URL'sini Alın
 
-3. **Betiği Çalıştırın**
+Tarayıcınızda bir slayta sağ tıklayın ve slaytın URL'sini almak için "Bağlantı Adresini Kopyala" veya "Bağlantıyı Kopyala" seçeneğini seçin.
 
-   Slaytları indirmek ve bir sunum oluşturmak için betiği kullanın:
+<div align="center">
+  <img src="images/url_kopyalama.png" alt="Slayt URL'sini kopyalama" width="80%" style="border: 1px solid #ddd; border-radius: 5px;" />
+</div>
+
+## 3. Kodu Çalıştırın
+
+   Slaytları indirmek ve bir sunum oluşturmak için kodu kullanın:
 
    ```bash
    python slide_downloader.py https://vkscalelite.anadolu.edu.tr/presentation/633fc11f5c4832a9db123d72eb67831a012d0710-1741272327834/presentation/091f41e4a0d9eaa5c28fad9596121aa1ed2b315c-1741272345267/svgs/slide1.svg
    ```
 
-   Betik şunları yapacaktır:
+   Kod şunları yapacaktır:
    - Tüm slaytları indirir (slide1.svg'den başlayarak)
    - Bunları JPEG formatına dönüştürür
    - Tüm slaytlarla bir PowerPoint sunumu oluşturur
@@ -60,15 +63,13 @@ konumsal bağımsız değişkenler:
   base_url              Slaytlar için temel URL (örn., https://example.com/presentation/id/svgs/slide)
 
 isteğe bağlı bağımsız değişkenler:
-  -h, --help            yardım mesajını göster ve çık
-  --output-dir OUTPUT_DIR
-                        Görüntülerin kaydedileceği dizin (varsayılan: slides)
-  --start START         Başlangıç slayt numarası (varsayılan: 1)
-  --max MAX             İndirilecek maksimum slayt sayısı (varsayılan: 100)
-  --format {jpeg,png}   Çıktı görüntü formatı (varsayılan: jpeg)
-  --presentation PRESENTATION
-                        Çıktı PowerPoint dosyası (varsayılan: presentation.pptx)
-  --keep-images         Sunum oluşturulduktan sonra geçici görüntü dosyalarını sakla
+  -h, --help                   Yardım mesajını göster ve çık
+  --output-dir OUTPUT_DIR      Görüntülerin kaydedileceği dizin (varsayılan: slides)
+  --start START                Başlangıç slayt numarası (varsayılan: 1)
+  --max MAX                    İndirilecek maksimum slayt sayısı (varsayılan: 100)
+  --format {jpeg,png}          Çıktı görüntü formatı (varsayılan: jpeg)
+  --presentation PRESENTATION  Çıktı PowerPoint dosyası (varsayılan: presentation.pptx)
+  --keep-images                Sunum oluşturulduktan sonra geçici görüntü dosyalarını sakla
 ```
 
 ## Örnekler
@@ -104,7 +105,7 @@ isteğe bağlı bağımsız değişkenler:
    CairoSVG bazı slaytları dönüştüremiyorsa, bu hatalı biçimlendirilmiş SVG içeriğinden kaynaklanıyor olabilir. SVG'leri ayrı ayrı indirmeyi ve farklı bir dönüştürücü kullanmayı deneyin.
 
 2. **404 Hataları**:
-   Betik, mevcut slaytların sonuna ulaştığını varsayarak 3 ardışık 404 hatasından sonra otomatik olarak duracaktır.
+   Kod, mevcut slaytların sonuna ulaştığını varsayarak 3 ardışık 404 hatasından sonra otomatik olarak duracaktır.
 
 3. **Hız Sınırlaması**:
-   Bağlantı hataları alıyorsanız, betikteki `time.sleep()` değerini değiştirerek indirmeler arasındaki gecikmeyi artırmayı deneyin.
+   Bağlantı hataları alıyorsanız, koddaki `time.sleep()` değerini değiştirerek indirmeler arasındaki gecikmeyi artırmayı deneyin.

@@ -30,7 +30,10 @@ This Python script downloads SVG slides from a specified URL, converts them to J
 2. **Get the URL of the slide**
    
    Right-click on a slide in your browser and select "Copy Link Address" or "Copy Link" to get the URL of the slide.
-   <img src="images/copy_url.png" alt="How to copy slide URL" width="50%"/>
+
+<div align="center">
+<img src="images/copy_url.png" alt="How to copy slide URL" width="80%" style="border: 1px solid #ddd; border-radius: 5px;" />
+</div>
 
 3. **Run the Script**
 
@@ -60,15 +63,13 @@ positional arguments:
   base_url              Base URL for slides (e.g., https://example.com/presentation/id/svgs/slide)
 
 optional arguments:
-  -h, --help            show this help message and exit
-  --output-dir OUTPUT_DIR
-                        Directory to save the images (default: slides)
-  --start START         Starting slide number (default: 1)
-  --max MAX             Maximum number of slides to download (default: 100)
-  --format {jpeg,png}   Output image format (default: jpeg)
-  --presentation PRESENTATION
-                        Output PowerPoint file (default: presentation.pptx)
-  --keep-images         Keep the temporary image files after creating the presentation
+  -h, --help                   Show this help message and exit
+  --output-dir OUTPUT_DIR      Directory to save the images (default: slides)
+  --start START                Starting slide number (default: 1)
+  --max MAX                    Maximum number of slides to download (default: 100)
+  --format {jpeg,png}          Output image format (default: jpeg)
+  --presentation PRESENTATION  Output PowerPoint file (default: presentation.pptx)
+  --keep-images                Keep the temporary image files after creating the presentation
 ```
 
 ## Examples
