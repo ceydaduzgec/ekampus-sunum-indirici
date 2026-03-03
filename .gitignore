@@ -4,7 +4,7 @@ presentation.pptx
 *.pptx
 
 # Ignore temporary slides directory
-slides/*
+slides*
 
 # Ignore virtual environment
 venv/*

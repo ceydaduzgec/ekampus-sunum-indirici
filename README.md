@@ -9,21 +9,23 @@ Bu Python kodu, belirtilen bir URL'den SVG slaytlarını indirir, JPEG veya PNG 
    Öncelikle, sisteminizde Python 3.6+ yüklü olduğundan emin olun. Ardından gerekli paketleri yükleyin:
 
    ```bash
+   python3 -m venv env
+   source env/bin/activate
    pip install -r requirements.txt
    ```
 
    Not: CairoSVG'nin düzgün çalışması için, ek sistem bağımlılıklarını yüklemeniz gerekebilir:
-   
+
    - **Ubuntu/Debian'da**:
      ```bash
      sudo apt-get install libcairo2-dev libpango1.0-dev libgdk-pixbuf2.0-dev libffi-dev shared-mime-info
      ```
-   
+
    - **macOS'ta** (Homebrew kullanarak):
      ```bash
      brew install cairo pango gdk-pixbuf libffi
      ```
-   
+
    - **Windows'ta**:
      pip'in otomatik olarak yükleyeceği önceden derlenmiş ikili paketleri kullanmanız önerilir.
 
@@ -40,7 +42,7 @@ Tarayıcınızda bir slayta sağ tıklayın ve slaytın URL'sini almak için "Ba
    Slaytları indirmek ve bir sunum oluşturmak için kodu kullanın:
 
    ```bash
-   python slide_downloader.py https://vkscalelite.anadolu.edu.tr/presentation/633fc11f5c4832a9db123d72eb67831a012d0710-1741272327834/presentation/091f41e4a0d9eaa5c28fad9596121aa1ed2b315c-1741272345267/svgs/slide1.svg
+   python3 slide_downloader.py https://vkscalelite.anadolu.edu.tr/presentation/633fc11f5c4832a9db123d72eb67831a012d0710-1741272327834/presentation/091f41e4a0d9eaa5c28fad9596121aa1ed2b315c-1741272345267/svgs/slide1.svg
    ```
 
    Kod şunları yapacaktır:
