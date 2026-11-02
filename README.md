@@ -54,23 +54,26 @@ Tarayıcınızda bir slayta sağ tıklayın ve slaytın URL'sini almak için "Ba
 ## Komut Satırı Seçenekleri
 
 ```
-Kullanım: slide_downloader.py [-h] [--output-dir OUTPUT_DIR] [--start START] [--max MAX]
-                          [--format {jpeg,png}] [--presentation PRESENTATION]
+Kullanım: slide_downloader.py [-h] [--input FILE] [--output-dir OUTPUT_DIR] [--start START]
+                          [--max MAX] [--format {jpeg,png}] [--presentation PRESENTATION]
                           [--keep-images]
-                          base_url
+                          [base_url]
 
 Slaytları indirir ve bir sunum oluşturur
 
-Zorunlu Değişkenler:
+Konumsal Değişkenler:
   base_url              Slaytlar için temel URL (örn., https://example.com/presentation/id/svgs/slide)
+                        (--input kullanılmıyorsa zorunludur)
 
 Opsiyonel Değişkenler:
   -h, --help                   Yardım mesajını göster ve çık
+  --input FILE                 Her satırı "Sunum adı: URL" olan metin dosyası; base_url yerine
+                               her satır için ayrı bir "<ad>.pptx" oluşturur
   --output-dir OUTPUT_DIR      Görüntülerin kaydedileceği dizin (varsayılan: slides)
   --start START                Başlangıç slayt numarası (varsayılan: 1)
   --max MAX                    İndirilecek maksimum slayt sayısı (varsayılan: 100)
   --format {jpeg,png}          Çıktı görüntü formatı (varsayılan: jpeg)
-  --presentation PRESENTATION  Çıktı PowerPoint dosyası (varsayılan: presentation.pptx)
+  --presentation PRESENTATION  Çıktı PowerPoint dosyası (varsayılan: presentation.pptx); --input ile yok sayılır
   --keep-images                Sunum oluşturulduktan sonra geçici görüntü dosyalarını sakla
 ```
 
@@ -100,6 +103,48 @@ Opsiyonel Değişkenler:
    ```bash
    python slide_downloader.py https://vkscalelite.anadolu.edu.tr/presentation/633fc11f5c4832a9db123d72eb67831a012d0710-1741272327834/presentation/091f41e4a0d9eaa5c28fad9596121aa1ed2b315c-1741272345267/svgs/slide --keep-images
    ```
+
+6. **Birden fazla haftayı tek seferde indirme (`--input`)**:
+   ```bash
+   python3 slide_downloader.py --input haftalar.txt
+   ```
+   Ayrıntılar için aşağıdaki **Girdi Dosyası ile Toplu İndirme** bölümüne bakın.
+
+## Girdi Dosyası ile Toplu İndirme
+
+Her hafta için komutu ayrı ayrı çalıştırmak yerine, tüm haftaları bir `.txt` dosyasına yazıp `--input` ile tek seferde indirebilirsiniz. Dosyadaki her satır **bir haftanın sunumudur** ve `Sunum adı: URL` biçimindedir. URL, o haftanın sunumunun başlangıç linkidir; yani tek sunum indirirken `base_url` olarak verdiğiniz link.
+
+```text
+2024-2025 Bahar_Hafta 1: https://vkscalelite.anadolu.edu.tr/presentation/.../svgs/slide1.svg
+2024-2025 Bahar_Hafta 2: https://vkscalelite.anadolu.edu.tr/presentation/.../svgs/slide1.svg
+```
+
+```bash
+python3 slide_downloader.py --input haftalar.txt
+```
+
+Bu komut her satır için mevcut komutu ayrı ayrı çalıştırmışsınız gibi davranır. Örneğin ilk satır şu komuta karşılık gelir:
+
+```bash
+python3 slide_downloader.py https://vkscalelite.anadolu.edu.tr/presentation/633fc11f5c4832a9db123d72eb67831a012d0710-1741272327834/presentation/091f41e4a0d9eaa5c28fad9596121aa1ed2b315c-1741272345267/svgs/slide1.svg --presentation "2024-2025 Bahar_Hafta 1.pptx"
+```
+
+- Her satır için, satırdaki adla bir sunum oluşturulur (`2024-2025 Bahar_Hafta 1.pptx` gibi) ve komutun çalıştırıldığı klasöre kaydedilir. Dosya adında kullanılamayan karakterler (`/ \ : * ? " < > |`) `_` ile değiştirilir.
+- Satırlar dosyadaki sırayla işlenir.
+- Ad ile URL, satırdaki **ilk** `: ` (iki nokta + boşluk) ile ayrılır. `https://` içindeki iki nokta ayırıcı sayılmaz. Bu yüzden sunum adının içinde `: ` kullanmayın.
+- Boş satırlar atlanır. Dosya UTF-8 olmalıdır. Aynı ad iki kez kullanılamaz.
+- `--start`, `--max`, `--format` ve `--keep-images` her sunuma ayrı ayrı uygulanır. `--keep-images` verilirse görüntüler `--output-dir` altında her sunum için ayrı bir klasörde saklanır. `--presentation` bu modda yok sayılır.
+- `base_url` ve `--input` birlikte kullanılamaz.
+- Dosya okunamazsa ya da bir satırın biçimi hatalıysa, indirme başlamadan önce hatalı satır numaralarıyla birlikte bir hata mesajı gösterilir.
+- Bir hafta indirilemezse diğer haftalar indirilmeye devam eder. İşlem sonunda başarısız satırlar listelenir.
+
+## Testler
+
+Testler slaytları yerel bir HTTP sunucusundan sunar, bu yüzden internet bağlantısı gerekmez. Kurulumdaki bağımlılıklar (CairoSVG'nin sistem bağımlılıkları dahil) yüklü olmalıdır. Proje klasöründe şu komutu çalıştırın:
+
+```bash
+python3 -m unittest discover tests
+```
 
 ## Sorun Giderme
 
