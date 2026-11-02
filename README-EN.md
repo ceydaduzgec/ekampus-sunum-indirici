@@ -6,7 +6,7 @@ This Python script downloads SVG slides from a specified URL, converts them to J
 
 1. **Install Required Dependencies**
 
-   First, ensure you have Python 3.6+ installed on your system. Then install the required packages:
+   First, ensure you have Python 3.11+ installed on your system. Then install the required packages:
 
    ```bash
    pip install -r requirements.txt

@@ -6,7 +6,7 @@ Bu Python kodu, belirtilen bir URL'den SVG slaytlarını indirir, JPEG veya PNG 
 
 1. **Gerekli Bağımlılıkları Yükleyin**
 
-   Öncelikle, sisteminizde Python 3.6+ yüklü olduğundan emin olun. Ardından gerekli paketleri yükleyin:
+   Öncelikle, sisteminizde Python 3.11+ yüklü olduğundan emin olun. Ardından gerekli paketleri yükleyin:
 
    ```bash
    python3 -m venv env
